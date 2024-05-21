@@ -1,0 +1,50 @@
+.icons-container {
+    position: relative;
+  }
+  
+  .icon-wrapper {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: floating 3s ease-in-out infinite; 
+  }
+  
+  .icon {
+    width: 2rem; 
+    height: 2rem; 
+  }
+  
+  .icon-label {
+    font-size: 0.75rem; 
+    color: #ede8f1; 
+    margin-top: 0.5rem; 
+  }
+  
+  .react {
+    top: calc(20% + 30vh);
+    left: calc(80% + 11vw);
+  }
+  
+  .python {
+    top: calc(45% + 42vh);
+    left: calc(73% + 10vw);
+  }
+  
+  .django {
+    top: calc(90% + 55vh);
+    left: calc(60% + 15vw);
+  }
+  
+  @keyframes floating {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
