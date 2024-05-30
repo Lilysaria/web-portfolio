@@ -1,0 +1,23 @@
+/* The moveClouds animation is defined to create a milky way great rift moving effect.
+   The background-position property is animated from below the element (1000px) to above it (-1000px). */
+@keyframes moveClouds {
+    0% { background-position: 0 1000px; }
+    100% { background-position: 0 -1000px; }
+}
+
+.greatRift {
+    position: absolute;
+    top: 50%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    height: 100%;
+    background-image: url('https://res.cloudinary.com/dgtqptpu1/image/upload/v1714950862/kisspng-wallpaper-snow-png-hd-5a767747602ee1.185813741517713223394_i1hslb.png');
+    background-repeat: repeat-y;
+    background-size: 100% auto;
+    animation: moveClouds 60s linear infinite;
+    mix-blend-mode: multiply;
+    z-index: 1; /* Lower z-index to display under the stars */
+    pointer-events: none;
+    opacity: 0.3;
+}
