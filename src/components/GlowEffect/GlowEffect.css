@@ -1,0 +1,88 @@
+@keyframes smoothBgVertical {
+  0%,
+  100% {
+    background-position: center bottom;
+  }
+  80% {
+    background-position: center top;
+  }
+}
+
+/* Wrapper styling for structural and positioning control */
+.wrapper {
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+
+/* Main element for the milky way glow effect  */
+.hero {
+  width: 30%;
+  height: 100vh;
+  position: absolute;
+  top: 20%;
+  bottom: 95%;
+  left: 35%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  --rainbow: repeating-linear-gradient(to bottom,
+        rgba(108, 164, 233, 0.619) 0%,
+        rgba(104, 174, 255, 0.05) 2%,
+        rgba(104, 174, 255, 0.1) 4%,
+        rgba(104, 174, 255, 0.15) 6%,
+        rgba(104, 174, 255, 0.2) 8%,
+        rgba(232, 121, 249, 0.25) 20%,
+        rgba(232, 121, 249, 0.3) 30%,
+        rgba(232, 121, 249, 0.35) 40%,
+        rgba(232, 121, 249, 0.3) 50%,
+        rgba(232, 121, 249, 0.25) 60%,
+        rgba(104, 174, 255, 0.2) 70%,
+        rgba(104, 174, 255, 0.15) 80%,
+        rgba(104, 174, 255, 0.1) 90%,
+        rgba(96, 165, 250, 0.05) 92%,
+        rgba(96, 165, 250, 0) 100%);
+
+  background-image: radial-gradient(
+    circle at center,
+    rgba(232, 121, 249, 0.4) 0%,
+    rgba(104, 174, 255, 0.2) 20%,
+    rgba(232, 121, 249, 0.4) 50%,
+    rgba(104, 174, 255, 0.2) 80%,
+    rgba(232, 121, 249, 0.4) 100%
+  );
+  background-size: 100% 200%;
+  background-repeat: no-repeat;
+  animation: smoothBgVertical 30s ease-in-out infinite alternate;
+
+  /* mask to create edge fading */
+  mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 1) 20%,
+      rgba(0, 0, 0, 1) 80%,
+      rgba(0, 0, 0, 0) 100%
+    ),
+    linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 1) 20%,
+      rgba(0, 0, 0, 1) 80%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  mask-mode: alpha;
+  mask-composite: intersect; /* Use 'intersect' to combine the gradients where both are opaque */
+  mask-size:
+    100% 100%,
+    100% 100%; /* Ensure the mask covers the whole element */
+  mask-repeat: no-repeat;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  mix-blend-mode: difference;
+}
