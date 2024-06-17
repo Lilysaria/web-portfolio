@@ -1,0 +1,110 @@
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.modal.open {
+    display: flex;
+}
+
+.modal-container {
+    background: #325169;
+    border-radius: 8px;
+    padding: 30px;
+    max-width: 80vw;
+    max-height: 80vh;
+    overflow-y: auto;
+    width: 90%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    margin: auto;
+    text-align: left;
+}
+
+.modal-container a {
+    color: #FFB6C1;
+}
+
+.modal-container .phone-number {
+    color: #FFB6C1;
+}
+
+.modal-container.small {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    max-width: 40vw;
+    max-height: 50vh;
+    overflow: hidden;
+}
+
+.about-container {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 20px;
+}
+
+.img-frame {
+    flex: 0 0 40%;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.img-frame img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.hero-content {
+    flex: 1;
+    padding: 30px;
+    color: white;
+    animation: fadeInText 1s ease-in-out;
+}
+
+.hero-content p {
+    color: white;
+    font-size: 1.0vw;
+    text-align: left;
+}
+
+@keyframes fadeInText {
+    from {
+        opacity: 0.3;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-container.project-modal {
+    background: rgba(0, 0, 255, 1);
+    backdrop-filter: none;
+}
+
+@media (max-width: 768px) {
+    .hero-content p, .modal-container {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .modal-container.small {
+        max-width: 90vw;
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-container.small {
+        max-width: 95vw;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+}
