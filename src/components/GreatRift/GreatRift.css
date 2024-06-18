@@ -21,3 +21,9 @@
     pointer-events: none;
     opacity: 0.3;
 }
+
+@media (max-width: 768px) {
+    .greatRift {
+        display: none;
+    }
+}

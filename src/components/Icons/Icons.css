@@ -24,17 +24,22 @@
    This allows the icon's position to adjust dynamically as the viewport size changes. */
 .react {
   top: calc(20% + 30vh);
-  left: calc(80% + 11vw);
+  left: calc(77% + 11vw);
 }
 
-.python {
-  top: calc(45% + 42vh);
+.expressjs {
+  top: calc(30% + 48vh);
   left: calc(73% + 10vw);
 }
 
-.django {
-  top: calc(90% + 55vh);
-  left: calc(60% + 15vw);
+.mongodb {
+  top: calc(45% + 42vh);
+  left: calc(63% + 10vw);
+}
+
+.node {
+  top: calc(25% + 22vh);
+  left: calc(69% + 10vw);
 }
 
 @keyframes floating {

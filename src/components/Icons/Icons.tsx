@@ -40,11 +40,22 @@ function Icons() {
       />
       <Icon
         src="https://res.cloudinary.com/dgtqptpu1/image/upload/v1714705483/python_w2kvey.png"
-        alt="Python"
+        alt="Expressjs"
         width={500}
         height={500}
       />
-      <Icon src="" alt="Django" width={500} height={500} />
+      <Icon
+        src="https://res.cloudinary.com/dgtqptpu1/image/upload/v1718464993/mongodb_hhbkky.png"
+        alt="mongodb"
+        width={500}
+        height={500}
+      />
+        <Icon
+        src="https://res.cloudinary.com/dgtqptpu1/image/upload/v1718468673/node_qee2bi.png"
+        alt="node"
+        width={500}
+        height={500}
+      />
     </div>
   );
 }

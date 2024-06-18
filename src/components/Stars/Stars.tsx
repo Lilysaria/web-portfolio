@@ -28,7 +28,7 @@ function Stars(): JSX.Element {
       const stars: Star[] = Array.from({ length: count }, () => {
         const x = Math.random() * canvas!.width * 0.4 + canvas!.width * 0.3;
         const y = Math.random() * canvas!.height;
-        const size = Math.random() * 2 + 1;
+        const size = Math.random() * 1 + 0.8;
         const speed = Math.random() * 0.1 + 0.05;
         return {
           x,
@@ -44,9 +44,12 @@ function Stars(): JSX.Element {
     // Create the stars
     const stars = createStars(100);
 
-    // Function to move stars
+    // Function to move and redraw stars
     const moveStars = (): void => {
       stars.forEach((star, index) => {
+        // Clear the area around the star before it moves
+        context.clearRect(star.x - star.size - 1, star.y - star.size - 1, star.size * 2 + 2, star.size * 2 + 2);
+
         const newY = star.y - star.speed;
         if (newY < 0) {
           stars[index] = {
@@ -59,13 +62,16 @@ function Stars(): JSX.Element {
             y: newY,
           };
         }
+
+        // Redraw the star in its new position
+        context.beginPath();
+        context.arc(star.x, stars[index].y, star.size, 0, Math.PI * 2);
+        context.fill();
       });
     };
 
     // Function to draw stars
     const drawStars = (): void => {
-      // Clear the canvas before drawing
-      context.clearRect(0, 0, canvas!.width, canvas!.height);
       // Set the color of the stars
       context.fillStyle = 'white';
       // Draw each star
@@ -76,10 +82,12 @@ function Stars(): JSX.Element {
       });
     };
 
+    // Draw the initial stars
+    drawStars();
+
     // Function to animate the stars
     const animate = (): void => {
       moveStars();
-      drawStars();
       // Request the next animation frame
       animationFrameId = requestAnimationFrame(animate);
     };

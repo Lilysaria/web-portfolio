@@ -10,6 +10,7 @@ import './ExpandableCard.css';
  */
 export interface Project {
   _id: string;
+  id: string;
   title: string;
   summary: string;
   imageUrl: string;
