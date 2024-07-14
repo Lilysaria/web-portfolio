@@ -1,13 +1,11 @@
 import React, { useState, useContext } from 'react';
-import gfm from 'remark-gfm';
-import ReactMarkdown from 'react-markdown';
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import Modal from '../Modal/Modal';
+import MyCustomComponent from '../../components/MyCustomComponent/MyCustomComponent';
+import StyledMarkdownComponent from '../StyledMarkdownComponent/StyledMarkdownComponent';
 import { AuthContext } from '../../../contexts/authContext';
 import './ExpandableCard.css';
 
-/**
- * Structure of a project.
- */
 export interface Project {
   _id: string;
   id: string;
@@ -16,37 +14,22 @@ export interface Project {
   imageUrl: string;
   section: 'work' | 'playground' | 'writings';
   detailContent: {
-    content: string;
+    content: MDXRemoteSerializeResult;
   };
 }
 
-/**
- * Defines props for ExpandableCard component.
- */
 interface ExpandableCardProps {
   project: Project;
 }
 
-/**
- * Displays a project card with options to expand for more details or delete.
- * @param {ExpandableCardProps} props - Component props.
- * @returns {JSX.Element} Rendered component.
- */
 function ExpandableCard({ project }: ExpandableCardProps): JSX.Element {
   const { isLoggedIn } = useContext(AuthContext);
   const [expandedProject, setExpandedProject] = useState<string | null>(null);
 
-  /**
-   * Toggles the expanded view of the project card.
-   * @param {string} title - Project title.
-   */
   const toggleExpand = (title: string) => {
     setExpandedProject(expandedProject === title ? null : title);
   };
 
-  /**
-   * Deletes the project via a DELETE request.
-   */
   const deleteProject = async () => {
     console.log('Deleting project with id:', project._id);
     try {
@@ -82,7 +65,8 @@ function ExpandableCard({ project }: ExpandableCardProps): JSX.Element {
           closeModal={() => toggleExpand(project.title)}
         >
           <div className="project-details">
-            <ReactMarkdown remarkPlugins={[gfm]}>{project.detailContent.content}</ReactMarkdown>
+          <MDXRemote {...project.detailContent.content} components={{ MyCustomComponent, StyledMarkdownComponent }} />
+
           </div>
         </Modal>
       )}

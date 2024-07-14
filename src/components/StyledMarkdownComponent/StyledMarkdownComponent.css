@@ -1,0 +1,93 @@
+@import '../../styles/fonts.css';
+
+.styled-markdown {
+  background-color: #153e67;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  font-family: 'Hubot-Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.styled-markdown h1,
+.styled-markdown h2,
+.styled-markdown h3,
+.styled-markdown h4,
+.styled-markdown h5,
+.styled-markdown h6 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.styled-markdown p {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.styled-markdown a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.styled-markdown a:hover {
+  text-decoration: underline;
+}
+
+.styled-markdown ul,
+.styled-markdown ol {
+  margin-bottom: 10px;
+  padding-left: 20px;
+}
+
+.styled-markdown code {
+  background-color: #f8f9fa;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.styled-markdown pre {
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.styled-markdown blockquote {
+  margin: 0;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-left: 5px solid #007bff;
+}
+
+.styled-markdown img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.styled-markdown-footer {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: #777;
+}
+
+.styled-markdown-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.tag {
+  background-color: #007bff;
+  color: #fff;
+  padding: 2px 5px;
+  border-radius: 3px;
+}
