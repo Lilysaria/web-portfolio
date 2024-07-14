@@ -29,13 +29,19 @@ function Index(): React.ReactElement {
       .then((data) => setProjects(data));
   }, []);
 
+  const handleProjectCreated = () => {
+    fetch('/api/projects')
+      .then((response) => response.json())
+      .then((data) => setProjects(data));
+  };
+
   return (
     <div className="">
       <Icons />
       <GreatRift />
       <GlowEffect />
       <Stars />
-      <CardButton />
+      <CardButton onProjectCreated={handleProjectCreated} />
       <NavBar setShowSection={setShowSection} setParallaxVisible={setParallaxVisible} />
       <div className="absolute top-0 left-0 w-full flex justify-between items-center p-5">
         <div className="flex flex-col items-start">
@@ -115,32 +121,28 @@ function Index(): React.ReactElement {
       </div>
       {parallaxVisible && <NatureParallax />}
       <Modal isOpen={modalOpen === 'About'} closeModal={() => setModalOpen(null)} size="small">
-        <div className="about-container">
-          <Image
-            src="https://res.cloudinary.com/dgtqptpu1/image/upload/v1715051973/IMG_20231128_161356_iblitq.jpg"
-            alt="Lilysaria Gaska"
-            width={300}
-            height={300}
-          />
-          <p>
-            I am a front-end developer with a passion for creating visually
-            appealing and user-friendly websites. I value collaboration and am
-            always eager to adopt new skills and technologies.
-          </p>
-        </div>
+      <div className="about-container">
+    <div className="hello-header">
+      <h2 className="hello-text">Hello,</h2>
+    </div>
+    <div className="paragraph-content">
+      <p>
+        I am a front-end developer with a passion for creating visually
+        appealing and user-friendly websites. I value collaboration and am
+        always eager to adopt new skills and technologies.
+      </p>
+    </div>
+  </div>
       </Modal>
       <Modal isOpen={modalOpen === 'Contact'} closeModal={() => setModalOpen(null)} size="small">
-        <div className="contact-container">
-          <p>Contact me via email at:</p>
-          <a href="mailto:bloomday56@gmail.com" target="_blank" rel="noopener noreferrer">bloomyday56@gmail.com</a>
-          <p>GitHub:</p>
-          <a href="https://github.com/Lilysaria" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
-          <p>LinkedIn:</p>
-          <a href="https://www.linkedin.com/in/lilysaria-gaska/" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a>
-          <p>Resume:</p>
-          <a href="path_to_your_resume.pdf" target="_blank" rel="noopener noreferrer">Download Resume</a>
-          <p>Phone:</p>
-          <p className="phone-number">541-761-6895</p>
+        <div className="contact-container text-center">
+          <div className="flex flex-col items-center mt-4">
+            <button className="btn-6 mb-2" onClick={() => window.open('mailto:lilysaria@protonmail.com', '_blank')}><span>lilysaria@protonmail.com</span></button>
+            <button className="btn-6 mb-2" onClick={() => window.open('https://github.com/Lilysaria', '_blank')}><span>GitHub</span></button>
+            <button className="btn-6 mb-2" onClick={() => window.open('https://www.linkedin.com/in/lilysaria-gaska/', '_blank')}><span>LinkedIn</span></button>
+            <button className="btn-6 mb-2" onClick={() => window.open('path_to_your_resume.pdf', '_blank')}><span>Resume</span></button>
+            <button className="btn-6 mb-2" onClick={() => window.location.href = 'tel:+15417616895'}><span>541-761-6895</span></button>
+          </div>
         </div>
       </Modal>
     </div>
