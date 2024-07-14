@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Jura:400");
+
 .modal {
     display: none;
     position: fixed;
@@ -13,6 +15,7 @@
 }
 
 .modal-container {
+    font-family: "Jura", sans-serif;
     background: #325169;
     border-radius: 8px;
     padding: 30px;
@@ -43,10 +46,13 @@
 
 .about-container {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: start;
+    justify-content: center;
     gap: 20px;
-}
+    text-align: center;
+  }
+  
 
 .img-frame {
     flex: 0 0 40%;
@@ -108,3 +114,102 @@
         overflow-y: auto;
     }
 }
+
+/* Contact Modal Button Styles */
+.btn-6 {
+    background: radial-gradient(circle, rgb(212, 147, 175) 0%, rgba(118,174,241,1) 100%);
+    line-height: 42px;
+    padding: 0;
+    border: none;
+    margin: 5px 0;
+    width: 80%;
+    max-width: 300px;
+    text-align: center;
+    display: inline-block;
+  }
+  .btn-6 span {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .btn-6:before,
+  .btn-6:after {
+    position: absolute;
+    content: "";
+    height: 0%;
+    width: 1px;
+    box-shadow:
+     -1px -1px 20px 0px rgba(255,255,255,1),
+     -4px -4px 5px 0px rgba(255,255,255,1),
+     7px 7px 20px 0px rgba(0,0,0,.4),
+     4px 4px 5px 0px rgba(0,0,0,.3);
+  }
+  .btn-6:before {
+    right: 0;
+    top: 0;
+    transition: all 500ms ease;
+  }
+  .btn-6:after {
+    left: 0;
+    bottom: 0;
+    transition: all 500ms ease;
+  }
+  .btn-6:hover {
+    background: transparent;
+    color: #76aef1;
+    box-shadow: none;
+  }
+  .btn-6:hover:before {
+    transition: all 500ms ease;
+    height: 100%;
+  }
+  .btn-6:hover:after {
+    transition: all 500ms ease;
+    height: 100%;
+  }
+  .btn-6 span:before,
+  .btn-6 span:after {
+    position: absolute;
+    content: "";
+    box-shadow:
+     -1px -1px 20px 0px rgba(255,255,255,1),
+     -4px -4px 5px 0px rgba(255,255,255,1),
+     7px 7px 20px 0px rgba(0,0,0,.4),
+     4px 4px 5px 0px rgba(0,0,0,.3);
+  }
+  .btn-6 span:before {
+    left: 0;
+    top: 0;
+    width: 0%;
+    height: .5px;
+    transition: all 500ms ease;
+  }
+  .btn-6 span:after {
+    right: 0;
+    bottom: 0;
+    width: 0%;
+    height: .5px;
+    transition: all 500ms ease;
+  }
+  .btn-6 span:hover:before {
+    width: 100%;
+  }
+  .btn-6 span:hover:after {
+    width: 100%;
+  }
+  
+  .hello-header {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .hello-text {
+    color: #FFB6C1;
+    font-size: 24px;
+  }
+  
+  .paragraph-content {
+    text-align: left;
+  }
+  

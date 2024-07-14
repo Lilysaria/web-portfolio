@@ -61,7 +61,6 @@ function Modal({
           <h1>{title}</h1>
           {children}
         </div>
-        <button type="button" onClick={closeModal}>Close</button>
       </div>
     </button>
   );
