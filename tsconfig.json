@@ -11,7 +11,7 @@
     "noEmit": false,
     "noEmitOnError": false,
     "esModuleInterop": true,
-    "module": "commonjs",
+    "module": "esnext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
