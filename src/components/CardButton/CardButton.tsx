@@ -1,34 +1,49 @@
 import React, { useState, FormEvent, ChangeEvent, useContext } from 'react';
 import { serialize } from 'next-mdx-remote/serialize';
+import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import Modal from '../Modal/Modal';
-import { Project } from '../ExpandableCard/ExpandableCard';
+import { Project as ExpandableCardProject } from '../ExpandableCard/ExpandableCard';
 import { AuthContext } from '../../../contexts/authContext';
 
 interface CardButtonProps {
   onProjectCreated: () => void;
 }
 
+interface Project {
+  _id: string;
+  id: string;
+  title: string;
+  summary: string;
+  imageUrl: string;
+  section: 'work' | 'playground' | 'writings';
+  detailContent: {
+    content: MDXRemoteSerializeResult;
+  };
+}
+
 function CardButton({ onProjectCreated }: CardButtonProps): JSX.Element {
   const { isLoggedIn } = useContext(AuthContext);
   const [isCreating, setIsCreating] = useState(false);
   const [newProject, setNewProject] = useState<Project>({
+    _id: '',
     id: '',
     title: '',
     summary: '',
     imageUrl: '',
     section: 'work',
     detailContent: {
-      content: '',
+      content: {} as MDXRemoteSerializeResult,
     },
   });
 
   const handleCreate = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
-    if (!newProject.detailContent.content.trim()) {
+    const contentString = newProject.detailContent.content.toString();
+    if (!contentString.trim()) {
       return;
     }
 
-    const mdxSource = await serialize(newProject.detailContent.content);
+    const mdxSource = await serialize(contentString);
 
     setIsCreating(false);
 
@@ -60,7 +75,7 @@ function CardButton({ onProjectCreated }: CardButtonProps): JSX.Element {
       ...prevState,
       detailContent: {
         ...prevState.detailContent,
-        content: value,
+        content: value as unknown as MDXRemoteSerializeResult, // Cast the value to the correct type
       },
     }));
   };
@@ -78,7 +93,7 @@ function CardButton({ onProjectCreated }: CardButtonProps): JSX.Element {
             <input type="text" name="imageUrl" value={newProject.imageUrl} onChange={handleInputChange} placeholder="Image URL" required />
             <textarea
               name="content"
-              value={newProject.detailContent.content}
+              value={newProject.detailContent.content as unknown as string} // Cast the value to string for the textarea
               onChange={handleContentChange}
               placeholder="Content"
               rows={10}
