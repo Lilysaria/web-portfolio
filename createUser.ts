@@ -8,6 +8,10 @@ async function createUser() {
   const username = process.env.USERNAME;
   const password = process.env.PASSWORD;
 
+  if (!username || !password) {
+    throw new Error("USERNAME or PASSWORD environment variable is not set");
+  }
+
   // Hash the password
   const hashedPassword = await bcrypt.hash(password, 10);
 
