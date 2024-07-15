@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import Modal from '../Modal/Modal';
-import MyCustomComponent from '../../components/MyCustomComponent/MyCustomComponent';
+import MyCustomComponent from '../MyCustomComponent/MyCustomComponent';
 import StyledMarkdownComponent from '../StyledMarkdownComponent/StyledMarkdownComponent';
 import { AuthContext } from '../../../contexts/authContext';
 import './ExpandableCard.css';
@@ -63,10 +63,10 @@ function ExpandableCard({ project }: ExpandableCardProps): JSX.Element {
         <Modal
           isOpen
           closeModal={() => toggleExpand(project.title)}
+          title={project.title}
         >
           <div className="project-details">
-          <MDXRemote {...project.detailContent.content} components={{ MyCustomComponent, StyledMarkdownComponent }} />
-
+            <MDXRemote {...project.detailContent.content} components={{ MyCustomComponent, StyledMarkdownComponent }} />
           </div>
         </Modal>
       )}

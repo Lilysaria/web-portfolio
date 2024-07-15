@@ -120,21 +120,31 @@ function Index(): React.ReactElement {
         )}
       </div>
       {parallaxVisible && <NatureParallax />}
-      <Modal isOpen={modalOpen === 'About'} closeModal={() => setModalOpen(null)} size="small">
-      <div className="about-container">
-    <div className="hello-header">
-      <h2 className="hello-text">Hello,</h2>
-    </div>
-    <div className="paragraph-content">
-      <p>
-        I am a front-end developer with a passion for creating visually
-        appealing and user-friendly websites. I value collaboration and am
-        always eager to adopt new skills and technologies.
-      </p>
-    </div>
-  </div>
+      <Modal
+        isOpen={modalOpen === 'About'}
+        closeModal={() => setModalOpen(null)}
+        size="small"
+        title="About"
+      >
+        <div className="about-container">
+          <div className="hello-header">
+            <h2 className="hello-text">Hello,</h2>
+          </div>
+          <div className="paragraph-content">
+            <p>
+              I am a front-end developer with a passion for creating visually
+              appealing and user-friendly websites. I value collaboration and am
+              always eager to adopt new skills and technologies.
+            </p>
+          </div>
+        </div>
       </Modal>
-      <Modal isOpen={modalOpen === 'Contact'} closeModal={() => setModalOpen(null)} size="small">
+      <Modal
+        isOpen={modalOpen === 'Contact'}
+        closeModal={() => setModalOpen(null)}
+        size="small"
+        title="Contact"
+      >
         <div className="contact-container text-center">
           <div className="flex flex-col items-center mt-4">
             <button className="btn-6 mb-2" onClick={() => window.open('mailto:lilysaria@protonmail.com', '_blank')}><span>lilysaria@protonmail.com</span></button>

@@ -1,15 +1,20 @@
 
 
 import { MDXProvider } from '@mdx-js/react';
-import MyCustomComponent from '../MyCustomComponent/MyCustomComponent.tsx';
-import StyledMarkdownComponent from '../StyledMarkdownComponent/StyledMarkdownComponent.tsx';
+import { ReactNode } from 'react';
+import MyCustomComponent from './MyCustomComponent/MyCustomComponent';
+import StyledMarkdownComponent from './StyledMarkdownComponent/StyledMarkdownComponent';
 
 const components = {
   MyCustomComponent,
   StyledMarkdownComponent,
 };
+// Define the expected shape of props
+interface MDXLayoutProps {
+  children: ReactNode;
+}
 
-const MDXLayout = ({ children }) => {
+const MDXLayout = ({ children }: MDXLayoutProps) => {
   return (
     <MDXProvider components={components}>
       {children}
