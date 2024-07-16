@@ -1,5 +1,6 @@
 import React, { useState, FormEvent, ChangeEvent, useContext } from 'react';
 import { serialize } from 'next-mdx-remote/serialize';
+import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import Modal from '../Modal/Modal';
 import { AuthContext } from '../../../contexts/authContext';
 import { Project } from '../ExpandableCard/ExpandableCard';
@@ -18,17 +19,18 @@ function CardButton({ onProjectCreated }: CardButtonProps): JSX.Element {
     imageUrl: '',
     section: 'work',
     detailContent: {
-      content: '',
+      content: '' as unknown as MDXRemoteSerializeResult,
     },
   });
 
   const handleCreate = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
-    if (!newProject.detailContent.content.trim()) {
+    const contentString = newProject.detailContent.content.toString();
+    if (!contentString.trim()) {
       return;
     }
 
-    const mdxSource = await serialize(newProject.detailContent.content);
+    const mdxSource: MDXRemoteSerializeResult = await serialize(contentString);
 
     setIsCreating(false);
 
@@ -50,7 +52,7 @@ function CardButton({ onProjectCreated }: CardButtonProps): JSX.Element {
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>): void => {
     const { name, value } = event.target;
-    setNewProject((prevState) => ({
+    setNewProject(prevState => ({
       ...prevState,
       [name]: value,
     }));
@@ -58,10 +60,10 @@ function CardButton({ onProjectCreated }: CardButtonProps): JSX.Element {
 
   const handleContentChange = (event: ChangeEvent<HTMLTextAreaElement>): void => {
     const { value } = event.target;
-    setNewProject((prevState) => ({
+    setNewProject(prevState => ({
       ...prevState,
       detailContent: {
-        content: value,
+        content: value as unknown as MDXRemoteSerializeResult,
       },
     }));
   };
@@ -79,7 +81,7 @@ function CardButton({ onProjectCreated }: CardButtonProps): JSX.Element {
             <input type="text" name="imageUrl" value={newProject.imageUrl} onChange={handleInputChange} placeholder="Image URL" required />
             <textarea
               name="content"
-              value={newProject.detailContent.content}
+              value={newProject.detailContent.content as unknown as string}
               onChange={handleContentChange}
               placeholder="Content"
               rows={10}
