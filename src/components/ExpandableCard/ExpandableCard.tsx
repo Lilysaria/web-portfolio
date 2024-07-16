@@ -7,7 +7,7 @@ import { AuthContext } from '../../../contexts/authContext';
 import './ExpandableCard.css';
 
 export interface Project {
-  _id: string;
+  _id?: string;
   id: string;
   title: string;
   summary: string;
