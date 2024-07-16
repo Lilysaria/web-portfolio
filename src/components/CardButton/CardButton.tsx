@@ -1,53 +1,37 @@
 import React, { useState, FormEvent, ChangeEvent, useContext } from 'react';
 import { serialize } from 'next-mdx-remote/serialize';
-import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import Modal from '../Modal/Modal';
-import { Project as ExpandableCardProject } from '../ExpandableCard/ExpandableCard';
 import { AuthContext } from '../../../contexts/authContext';
+import { Project } from '../ExpandableCard/ExpandableCard';
 
 interface CardButtonProps {
   onProjectCreated: () => void;
-}
-
-interface Project {
-  _id: string;
-  id: string;
-  title: string;
-  summary: string;
-  imageUrl: string;
-  section: 'work' | 'playground' | 'writings';
-  detailContent: {
-    content: MDXRemoteSerializeResult;
-  };
 }
 
 function CardButton({ onProjectCreated }: CardButtonProps): JSX.Element {
   const { isLoggedIn } = useContext(AuthContext);
   const [isCreating, setIsCreating] = useState(false);
   const [newProject, setNewProject] = useState<Project>({
-    _id: '',
     id: '',
     title: '',
     summary: '',
     imageUrl: '',
     section: 'work',
     detailContent: {
-      content: {} as MDXRemoteSerializeResult,
+      content: '',
     },
   });
 
   const handleCreate = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
-    const contentString = newProject.detailContent.content.toString();
-    if (!contentString.trim()) {
+    if (!newProject.detailContent.content.trim()) {
       return;
     }
 
-    const mdxSource = await serialize(contentString);
+    const mdxSource = await serialize(newProject.detailContent.content);
 
     setIsCreating(false);
 
-    // Save the new project with serialized MDX content
     const response = await fetch('/api/projects', {
       method: 'POST',
       headers: {
@@ -58,6 +42,9 @@ function CardButton({ onProjectCreated }: CardButtonProps): JSX.Element {
 
     if (response.ok) {
       onProjectCreated();
+    } else {
+      const errorData = await response.json();
+      console.error('Failed to create project:', errorData);
     }
   };
 
@@ -74,8 +61,7 @@ function CardButton({ onProjectCreated }: CardButtonProps): JSX.Element {
     setNewProject((prevState) => ({
       ...prevState,
       detailContent: {
-        ...prevState.detailContent,
-        content: value as unknown as MDXRemoteSerializeResult, // Cast the value to the correct type
+        content: value,
       },
     }));
   };
@@ -93,7 +79,7 @@ function CardButton({ onProjectCreated }: CardButtonProps): JSX.Element {
             <input type="text" name="imageUrl" value={newProject.imageUrl} onChange={handleInputChange} placeholder="Image URL" required />
             <textarea
               name="content"
-              value={newProject.detailContent.content as unknown as string} // Cast the value to string for the textarea
+              value={newProject.detailContent.content}
               onChange={handleContentChange}
               placeholder="Content"
               rows={10}
