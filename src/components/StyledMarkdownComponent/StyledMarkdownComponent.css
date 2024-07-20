@@ -40,14 +40,14 @@
 }
 
 .styled-markdown code {
-  background-color: #f8f9fa;
+  background-color: #cb6ed5;
   padding: 2px 4px;
   border-radius: 4px;
   font-family: 'Courier New', Courier, monospace;
 }
 
 .styled-markdown pre {
-  background-color: #f8f9fa;
+  background-color: #23486d;
   padding: 10px;
   border-radius: 5px;
   overflow-x: auto;
