@@ -33,25 +33,25 @@ function Icons() {
   return (
     <div className="icons-container">
       <Icon
-        src="https://res.cloudinary.com/dgtqptpu1/image/upload/v1714706494/638-6386413_react-logo-png-white-transparent-png_ewwwwa.jpg"
+        src="https://res.cloudinary.com/dgtqptpu1/image/upload/v1721658429/core_orh9sy.png"
         alt="React"
         width={500}
         height={500}
       />
       <Icon
-        src="https://res.cloudinary.com/dgtqptpu1/image/upload/v1714705483/python_w2kvey.png"
+        src="https://res.cloudinary.com/dgtqptpu1/image/upload/v1721662932/icons8-express-js-64_zxdrg1.png"
         alt="Expressjs"
         width={500}
         height={500}
       />
       <Icon
-        src="https://res.cloudinary.com/dgtqptpu1/image/upload/v1718464993/mongodb_hhbkky.png"
+        src="https://res.cloudinary.com/dgtqptpu1/image/upload/v1721660334/5f1c62fe-93dd-4b42-a1c0-c5c0146bce12_nandmk.png"
         alt="mongodb"
         width={500}
         height={500}
       />
         <Icon
-        src="https://res.cloudinary.com/dgtqptpu1/image/upload/v1718468673/node_qee2bi.png"
+        src="https://res.cloudinary.com/dgtqptpu1/image/upload/v1721661175/icons8-nodejs-64_v4a3sp.png"
         alt="node"
         width={500}
         height={500}
