@@ -200,10 +200,13 @@ function Index(): React.ReactElement {
             </button>
             <button
               className="btn-6 mb-2"
-              onClick={() => window.open('path_to_your_resume.pdf', '_blank')}
+              onClick={() =>
+                window.open('https://blue-deidre-43.tiiny.site/', '_blank')
+              }
             >
               <span>Resume</span>
             </button>
+
             <button
               className="btn-6 mb-2"
               onClick={() => (window.location.href = 'tel:+15417616895')}
