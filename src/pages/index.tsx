@@ -50,7 +50,7 @@ function Index(): React.ReactElement {
       />
       <div className="absolute top-0 left-0 w-full flex justify-between items-center p-5">
         <div className="flex flex-col items-start">
-          <h1 className="text-xl font-bold mb-12 text-white">
+          <h1 className="text-xl font-bold mb-12 text-white mobile-text-smaller">
             {/* eslint-disable-next-line */}
             Lilysaria Gaska
           </h1>
@@ -73,8 +73,12 @@ function Index(): React.ReactElement {
           className="absolute left-1/2 top-0 text-center"
           style={{ transform: 'translateX(-60%)' }}
         >
-          <h2 className="text-lg text-white">Web Developer</h2>
-          <p className="text-sm mt-1 text-white">Murphy, Oregon</p>
+          <h2 className="text-lg text-white mobile-text-smaller-h2">
+            Web Developer
+          </h2>
+          <p className="text-sm mt-1 text-white mobile-text-smaller-p">
+            Murphy, Oregon
+          </p>
         </div>
       </div>
       <div ref={sectionRef}>
