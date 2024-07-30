@@ -1,16 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
-import Image from 'next/image';
 import Icons from '../components/Icons/Icons';
 import GlowEffect from '../components/GlowEffect/GlowEffect';
 import Stars from '../components/Stars/Stars';
 import GreatRift from '../components/GreatRift/GreatRift';
 import NavBar from '../components/NavBar/NavBar';
-import ExpandableCard, {
-  Project,
-} from '../components/ExpandableCard/ExpandableCard';
+import ExpandableCard, { Project } from '../components/ExpandableCard/ExpandableCard';
 import NatureParallax from '../components/NatureParallax/NatureParallax';
 import Modal from '../components/Modal/Modal';
 import CardButton from '../components/CardButton/CardButton';
+import Starfield from '../components/Starfield/Starfield';
 
 function Index(): React.ReactElement {
   const [showSection, setShowSection] = useState<string | null>(null);
@@ -39,6 +37,7 @@ function Index(): React.ReactElement {
 
   return (
     <div className="">
+      <Starfield />
       <Icons />
       <GreatRift />
       <GlowEffect />
@@ -51,7 +50,6 @@ function Index(): React.ReactElement {
       <div className="absolute top-0 left-0 w-full flex justify-between items-center p-5">
         <div className="flex flex-col items-start">
           <h1 className="text-xl font-bold mb-12 text-white mobile-text-smaller">
-            {/* eslint-disable-next-line */}
             Lilysaria Gaska
           </h1>
           <button
@@ -157,10 +155,10 @@ function Index(): React.ReactElement {
               Inspired by other developers and the changing web sphere, I hope
               to develop alongside others. I have a passion for front-end and
               back-end technologies and web design. I have discovered my
-              favorite approaches are more methodical, with an openness to being
-              creative. I am deeply committed to learning the web and am excited
-              to continue expanding my knowledge with new technologies like
-              state management libraries (such as Redux), TypeScript,
+              favorite approaches are more methodical, with an openness to
+              being creative. I am deeply committed to learning the web and am
+              excited to continue expanding my knowledge with new technologies
+              like state management libraries (such as Redux), TypeScript,
               server-side rendering with Next.js, and Python, as well as
               emerging areas like cloud computing and DevOps.
             </p>
