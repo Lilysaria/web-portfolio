@@ -1,5 +1,24 @@
 import React, { useEffect, useRef } from 'react';
 
+interface Particle {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  radius: number;
+  opacity?: number;
+  trailLengthDelta?: number;
+  isSpawning?: boolean;
+  isDying?: boolean;
+  isDead?: boolean;
+  create(x: number, y: number, speed: number, direction: number): Particle;
+  getSpeed(): number;
+  setSpeed(speed: number): void;
+  getHeading(): number;
+  setHeading(heading: number): void;
+  update(): void;
+}
+
 const Starfield: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
@@ -11,8 +30,8 @@ const Starfield: React.FC = () => {
 
     let width = (canvas.width = window.innerWidth),
       height = (canvas.height = window.innerHeight);
-    const stars = [],
-      shootingStars = [],
+    const stars: Particle[] = [],
+      shootingStars: Particle[] = [],
       layers = [
         { speed: 0.015, scale: 0.2, count: 320 },
         { speed: 0.03, scale: 0.5, count: 50 },
@@ -29,14 +48,14 @@ const Starfield: React.FC = () => {
       shootingStarRadius = 3;
     let paused = false;
 
-    const particle = {
+    const particle: Particle = {
       x: 0,
       y: 0,
       vx: 0,
       vy: 0,
       radius: 0,
 
-      create(x: number, y: number, speed: number, direction: number) {
+      create(x: number, y: number, speed: number, direction: number): Particle {
         const obj = Object.create(this);
         obj.x = x;
         obj.y = y;
@@ -50,37 +69,37 @@ const Starfield: React.FC = () => {
         return obj;
       },
 
-      getSpeed() {
+      getSpeed(): number {
         return Math.sqrt(this.vx * this.vx + this.vy * this.vy);
       },
 
-      setSpeed(speed: number) {
+      setSpeed(speed: number): void {
         const heading = this.getHeading();
         this.vx = Math.cos(heading) * speed;
         this.vy = Math.sin(heading) * speed;
       },
 
-      getHeading() {
+      getHeading(): number {
         return Math.atan2(this.vy, this.vx);
       },
 
-      setHeading(heading: number) {
+      setHeading(heading: number): void {
         const speed = this.getSpeed();
         this.vx = Math.cos(heading) * speed;
         this.vy = Math.sin(heading) * speed;
       },
 
-      update() {
+      update(): void {
         this.x += this.vx;
         this.y += this.vy;
       },
     };
 
-    function randomRange(min: number, max: number) {
+    function randomRange(min: number, max: number): number {
       return min + Math.random() * (max - min);
     }
 
-    function degreesToRads(degrees: number) {
+    function degreesToRads(degrees: number): number {
       return (degrees / 180) * Math.PI;
     }
 
@@ -119,7 +138,7 @@ const Starfield: React.FC = () => {
       shootingStars.push(shootingStar);
     }
 
-    function killShootingStar(shootingStar) {
+    function killShootingStar(shootingStar: Particle) {
       setTimeout(() => {
         shootingStar.isDying = true;
       }, shootingStarLifeTime);
@@ -189,7 +208,7 @@ const Starfield: React.FC = () => {
       requestAnimationFrame(update);
     }
 
-    function drawStar(star) {
+    function drawStar(star: Particle) {
       if (context) {
         context.fillStyle = 'rgb(255, 221, 157)';
         context.beginPath();
@@ -198,7 +217,7 @@ const Starfield: React.FC = () => {
       }
     }
 
-    function drawShootingStar(p) {
+    function drawShootingStar(p: Particle) {
       const x = p.x,
         y = p.y,
         currentTrailLength = maxTrailLength * (p.trailLengthDelta ?? 0),
@@ -253,7 +272,7 @@ const Starfield: React.FC = () => {
       paused = true;
     };
 
-    let resizeTimeout;
+    let resizeTimeout: ReturnType<typeof setTimeout>;
     window.onresize = () => {
       clearTimeout(resizeTimeout);
       resizeTimeout = setTimeout(() => {
@@ -273,7 +292,7 @@ const Starfield: React.FC = () => {
 
 export default Starfield;
 
-function lineToAngle(x1, y1, length, radians) {
+function lineToAngle(x1: number, y1: number, length: number, radians: number) {
   const x2 = x1 + length * Math.cos(radians),
     y2 = y1 + length * Math.sin(radians);
   return { x: x2, y: y2 };
