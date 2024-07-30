@@ -16,11 +16,11 @@ body {
 
 body {
   padding: 20px;
-  background-image: url('https://res.cloudinary.com/dgtqptpu1/image/upload/v1714445147/negative-space-starry-evening-sky_wenuhm.jpg');
   background-size: 100% 120vh;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  overflow-x: hidden;
 }
 
 html {
