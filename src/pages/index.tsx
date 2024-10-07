@@ -1,33 +1,27 @@
-import React, { useState, useRef, useEffect } from 'react';
-import Icons from '../components/Icons/Icons';
+import React, { useState, useRef } from 'react';
+import GithubCommits from '../components/GithubCommits/GithubCommits';
 import GlowEffect from '../components/GlowEffect/GlowEffect';
 import Stars from '../components/Stars/Stars';
 import GreatRift from '../components/GreatRift/GreatRift';
 import NavBar from '../components/NavBar/NavBar';
-import ExpandableCard, { Project } from '../components/ExpandableCard/ExpandableCard';
+import ExpandableCard, {
+  Project,
+} from '../components/ExpandableCard/ExpandableCard';
 import NatureParallax from '../components/NatureParallax/NatureParallax';
 import Modal from '../components/Modal/Modal';
 import CardButton from '../components/CardButton/CardButton';
 import Starfield from '../components/Starfield/Starfield';
 
-function Index(): React.ReactElement {
-  const [showSection, setShowSection] = useState<string | null>(null);
+interface Props {
+  initialProjects: Project[];
+}
+
+const Index: React.FC<Props> = ({ initialProjects }) => {
+  const [showSection, setShowSection] = useState<string | null>('work');
   const [modalOpen, setModalOpen] = useState<string | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [parallaxVisible, setParallaxVisible] = useState<boolean>(false);
-  const [projects, setProjects] = useState<Project[]>([]);
-
-  useEffect(() => {
-    if (showSection && sectionRef.current) {
-      sectionRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, [showSection]);
-
-  useEffect(() => {
-    fetch('/api/projects')
-      .then(response => response.json())
-      .then(data => setProjects(data));
-  }, []);
+  const [parallaxVisible, setParallaxVisible] = useState<boolean>(true);
+  const [projects, setProjects] = useState<Project[]>(initialProjects);
 
   const handleProjectCreated = () => {
     fetch('/api/projects')
@@ -36,9 +30,9 @@ function Index(): React.ReactElement {
   };
 
   return (
-    <div className="">
+    <div>
       <Starfield />
-      <Icons />
+      <GithubCommits />
       <GreatRift />
       <GlowEffect />
       <Stars />
@@ -47,28 +41,36 @@ function Index(): React.ReactElement {
         setShowSection={setShowSection}
         setParallaxVisible={setParallaxVisible}
       />
+
       <div className="absolute top-0 left-0 w-full flex justify-between items-center p-5">
-        <div className="flex flex-col items-start">
-          <h1 className="text-xl font-bold mb-12 text-white mobile-text-smaller">
+        <div className="flex items-center relative">
+          <img
+            src="https://res.cloudinary.com/dgtqptpu1/image/upload/v1727756375/moon-removebg-preview_1_f42u8q.png"
+            alt="Logo"
+            className="w-20 h-22 mr-3"
+          />
+          <h1 className="text-xl font-bold mb-12 text-white mobile-text-smaller mobile-name custom-font">
             Lilysaria Gaska
           </h1>
-          <button
-            type="button"
-            className="text-lg mt-2 mb-12 hover:underline cursor-pointer text-white bg-transparent border-none"
-            onClick={() => setModalOpen('Contact')}
-          >
-            Contact +
-          </button>
-          <button
-            type="button"
-            className="text-lg hover:underline cursor-pointer text-white bg-transparent border-none"
-            onClick={() => setModalOpen('About')}
-          >
-            About +
-          </button>
+          <div className="absolute top-full mt-2 left-0 flex flex-col">
+            <button
+              type="button"
+              className="text-lg hover:underline cursor-pointer text-white bg-transparent border-none mb-1"
+              onClick={() => setModalOpen('About')}
+            >
+              About +
+            </button>
+            <button
+              type="button"
+              className="text-lg hover:underline cursor-pointer text-white bg-transparent border-none"
+              onClick={() => setModalOpen('Contact')}
+            >
+              Contact +
+            </button>
+          </div>
         </div>
         <div
-          className="absolute left-1/2 top-0 text-center"
+          className="absolute left-1/2 top-0 text-center mobile-title custom-font"
           style={{ transform: 'translateX(-60%)' }}
         >
           <h2 className="text-lg text-white mobile-text-smaller-h2">
@@ -79,19 +81,10 @@ function Index(): React.ReactElement {
           </p>
         </div>
       </div>
+
       <div ref={sectionRef}>
         {showSection === 'work' && (
-          <div
-            id="work"
-            style={{
-              margin: 'auto',
-              maxWidth: '60rem',
-              padding: '0 1rem',
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
-              gap: '1rem',
-            }}
-          >
+          <div id="work" style={gridStyle}>
             {projects
               .filter(project => project.section === 'work')
               .map(project => (
@@ -100,17 +93,7 @@ function Index(): React.ReactElement {
           </div>
         )}
         {showSection === 'playground' && (
-          <div
-            id="playground"
-            style={{
-              margin: 'auto',
-              maxWidth: '60rem',
-              padding: '0 1rem',
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
-              gap: '1rem',
-            }}
-          >
+          <div id="playground" style={gridStyle}>
             {projects
               .filter(project => project.section === 'playground')
               .map(project => (
@@ -119,17 +102,7 @@ function Index(): React.ReactElement {
           </div>
         )}
         {showSection === 'writings' && (
-          <div
-            id="writings"
-            style={{
-              margin: 'auto',
-              maxWidth: '60rem',
-              padding: '0 1rem',
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
-              gap: '1rem',
-            }}
-          >
+          <div id="writings" style={gridStyle}>
             {projects
               .filter(project => project.section === 'writings')
               .map(project => (
@@ -138,7 +111,9 @@ function Index(): React.ReactElement {
           </div>
         )}
       </div>
+
       {parallaxVisible && <NatureParallax />}
+
       <Modal
         isOpen={modalOpen === 'About'}
         closeModal={() => setModalOpen(null)}
@@ -155,16 +130,17 @@ function Index(): React.ReactElement {
               Inspired by other developers and the changing web sphere, I hope
               to develop alongside others. I have a passion for front-end and
               back-end technologies and web design. I have discovered my
-              favorite approaches are more methodical, with an openness to
-              being creative. I am deeply committed to learning the web and am
-              excited to continue expanding my knowledge with new technologies
-              like state management libraries (such as Redux), TypeScript,
+              favorite approaches are more methodical, with an openness to being
+              creative. I am deeply committed to learning the web and am excited
+              to continue expanding my knowledge with new technologies like
+              state management libraries (such as Redux), TypeScript,
               server-side rendering with Next.js, and Python, as well as
               emerging areas like cloud computing and DevOps.
             </p>
           </div>
         </div>
       </Modal>
+
       <Modal
         isOpen={modalOpen === 'Contact'}
         closeModal={() => setModalOpen(null)}
@@ -208,7 +184,6 @@ function Index(): React.ReactElement {
             >
               <span>Resume</span>
             </button>
-
             <button
               className="btn-6 mb-2"
               onClick={() => (window.location.href = 'tel:+15417616895')}
@@ -220,6 +195,28 @@ function Index(): React.ReactElement {
       </Modal>
     </div>
   );
+};
+
+const gridStyle = {
+  margin: 'auto',
+  maxWidth: '60rem',
+  padding: '0 1rem',
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+  gap: '1rem',
+};
+
+// fetching data at build time
+export async function getStaticProps() {
+  const res = await fetch('http://localhost:3000/api/projects');
+  const initialProjects: Project[] = await res.json();
+
+  return {
+    props: {
+      initialProjects,
+    },
+    revalidate: 10,
+  };
 }
 
 export default Index;
