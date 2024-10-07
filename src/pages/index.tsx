@@ -55,7 +55,7 @@ const Index: React.FC<Props> = ({ initialProjects }) => {
           <div className="absolute top-full mt-2 left-0 flex flex-col">
             <button
               type="button"
-              className="text-lg hover:underline cursor-pointer text-white bg-transparent border-none mb-1"
+              className="text-lg hover:underline cursor-pointer text-white bg-transparent border-none mb-12"
               onClick={() => setModalOpen('About')}
             >
               About +
