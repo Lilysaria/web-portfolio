@@ -208,7 +208,7 @@ const gridStyle = {
 
 // fetching data at build time
 export async function getStaticProps() {
-  const res = await fetch('http://localhost:3000/api/projects');
+  const res = await fetch('/api/projects');
   const initialProjects: Project[] = await res.json();
 
   return {
