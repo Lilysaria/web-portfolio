@@ -1,7 +1,13 @@
+import withPlugins from 'next-compose-plugins';
 import withMDX from '@next/mdx';
+import withBundleAnalyzer from '@next/bundle-analyzer';
 
 const mdxConfig = withMDX({
   extension: /\.mdx?$/,
+});
+
+const bundleAnalyzer = withBundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
 });
 
 const nextConfig = {
@@ -14,4 +20,4 @@ const nextConfig = {
   },
 };
 
-export default mdxConfig(nextConfig);
+export default withPlugins([mdxConfig, bundleAnalyzer], nextConfig);
