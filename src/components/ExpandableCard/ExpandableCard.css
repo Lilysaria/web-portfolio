@@ -1,18 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
 .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    position: relative;
-    top: 100px;
-    margin-bottom: 50px;
-    gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  top: 100px;
+  margin-bottom: 50px;
+  gap: 20px;
 }
 
 .card {
-    width: 100%;
-    max-width: 400px;
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1); /* subtle border */
+  font-family: 'Roboto', sans-serif;
 }
 
-input[type="text"] {
-  color: black;
+.card:hover {
+  transform: scale(1.05); /* slightly scale the card on hover */
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.3),
+    0 0 15px rgba(118, 174, 241, 0.5); /* add a glowing shadow */
+  border: 2px solid rgba(118, 174, 241, 0.7);
+}
+
+.card img {
+  transition: transform 0.3s ease;
+  border-radius: 12px;
+}
+
+.card:hover img {
+  transform: scale(1.05); /*zoom the image on hover */
+}
+
+/* Steady glowing border effect */
+.card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 12px;
+  border: 2px solid rgba(118, 174, 241, 0.7);
+  filter: blur(6px);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.card:hover::before {
+  opacity: 1; /* glowing border on hover */
+}
+
+.learn-more-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(118, 174, 241, 0.2),
+    rgba(0, 0, 0, 0.7)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  border-radius: 12px;
+}
+
+.card:hover .learn-more-overlay {
+  opacity: 1;
+}
+
+.learn-more-overlay span {
+  color: #76aef1;
+  font-size: 22px;
+  font-weight: 500;
+  text-align: center;
+  pointer-events: none; /* ensure the text doesn't interfere with the button click */
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  background: linear-gradient(45deg, #fff, #76aef1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

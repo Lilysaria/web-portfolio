@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import Image from 'next/image';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import Modal from '../Modal/Modal';
 import MyCustomComponent from '../MyCustomComponent/MyCustomComponent';
@@ -47,17 +48,34 @@ function ExpandableCard({ project }: ExpandableCardProps): JSX.Element {
 
   return (
     <div className="card-container">
-      <button type="button" className="card" onClick={() => toggleExpand(project.title)} tabIndex={0}>
-        <div className="bg-white shadow-md rounded-lg overflow-hidden">
-          <img src={project.imageUrl} alt={project.title} className="w-full h-40 object-cover object-center" />
+      <button
+        type="button"
+        className="card"
+        onClick={() => toggleExpand(project.title)}
+        tabIndex={0}
+      >
+        <div className="bg-white shadow-md rounded-lg overflow-hidden relative">
+          <Image
+            src={project.imageUrl}
+            alt={project.title}
+            className="w-full h-40 object-cover object-center"
+            width={500}
+            height={200}
+            onLoadingComplete={() => console.log('Image loaded!')}
+          />
           <div className="p-4">
             <h2 className="font-bold text-lg">{project.title}</h2>
             <p className="text-gray-600">{project.summary}</p>
           </div>
+          <div className="learn-more-overlay">
+            <span>Learn more</span>
+          </div>
         </div>
       </button>
       {isLoggedIn && (
-        <button type="button" onClick={deleteProject}>Delete</button>
+        <button type="button" onClick={deleteProject}>
+          Delete
+        </button>
       )}
       {expandedProject === project.title && (
         <Modal
@@ -66,7 +84,10 @@ function ExpandableCard({ project }: ExpandableCardProps): JSX.Element {
           title={project.title}
         >
           <div className="project-details">
-            <MDXRemote {...project.detailContent.content} components={{ MyCustomComponent, StyledMarkdownComponent }} />
+            <MDXRemote
+              {...project.detailContent.content}
+              components={{ MyCustomComponent, StyledMarkdownComponent }}
+            />
           </div>
         </Modal>
       )}
