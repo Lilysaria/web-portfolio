@@ -44,11 +44,7 @@ const Index: React.FC<Props> = ({ initialProjects }) => {
 
       <div className="absolute top-0 left-0 w-full flex justify-between items-center p-5">
         <div className="flex items-center relative">
-          <img
-            src="https://res.cloudinary.com/dgtqptpu1/image/upload/v1727756375/moon-removebg-preview_1_f42u8q.png"
-            alt="Logo"
-            className="w-20 h-22 mr-3"
-          />
+         
           <h1 className="text-xl font-bold mb-12 text-white mobile-text-smaller mobile-name custom-font">
             Lilysaria Gaska
           </h1>
@@ -179,7 +175,7 @@ const Index: React.FC<Props> = ({ initialProjects }) => {
             <button
               className="btn-6 mb-2"
               onClick={() =>
-                window.open('https://blue-deidre-43.tiiny.site/', '_blank')
+                window.open('https://github.com/Lilysaria/resume/blob/main/Lily%2BGaska%2BResume.pdf', '_blank')
               }
             >
               <span>Resume</span>

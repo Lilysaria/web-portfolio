@@ -69,9 +69,14 @@
 
 .hero-content {
   flex: 1;
-  padding: 30px;
   color: white;
   animation: fadeInText 1s ease-in-out;
+}
+
+.hero-content h1 {
+  color: rgb(212, 129, 171);
+  font-size: 2em;
+  margin-bottom: 20px;
 }
 
 .hero-content p {
@@ -89,9 +94,19 @@
   }
 }
 
+.modal-container {
+  max-width: 90vw;
+  max-height: 80vh;
+  width: 95%;
+}
+
 .modal-container.project-modal {
   background: rgba(0, 0, 255, 1);
   backdrop-filter: none;
+  max-width: 195vw;
+  max-height: 95vh;
+  width: 98%;
+  margin-top: 250px;
 }
 
 @media (max-width: 768px) {

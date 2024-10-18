@@ -50,11 +50,11 @@ function ExpandableCard({ project }: ExpandableCardProps): JSX.Element {
     <div className="card-container">
       <button
         type="button"
-        className="card"
+        className="card w-full h-full"
         onClick={() => toggleExpand(project.title)}
         tabIndex={0}
       >
-        <div className="bg-white shadow-md rounded-lg overflow-hidden relative">
+        <div className="bg-blue shadow-md rounded-lg overflow-hidden relative w-full h-full">
           <Image
             src={project.imageUrl}
             alt={project.title}

@@ -13,28 +13,33 @@
 .card {
   width: 100%;
   max-width: 400px;
+  height: 100%;
   position: relative;
   overflow: hidden;
   cursor: pointer;
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1); /* subtle border */
+  border-radius: 4px;
   font-family: 'Roboto', sans-serif;
+  padding: 0;
+  border: none;
+  background: none;
 }
 
+.p-4 {
+  background-color: rgb(209, 223, 236);
+}
 .card:hover {
   transform: scale(1.05); /* slightly scale the card on hover */
   box-shadow:
     0 10px 25px rgba(0, 0, 0, 0.3),
     0 0 15px rgba(118, 174, 241, 0.5); /* add a glowing shadow */
-  border: 2px solid rgba(118, 174, 241, 0.7);
+
 }
 
 .card img {
   transition: transform 0.3s ease;
-  border-radius: 12px;
 }
 
 .card:hover img {
@@ -49,8 +54,7 @@
   left: -2px;
   right: -2px;
   bottom: -2px;
-  border-radius: 12px;
-  border: 2px solid rgba(118, 174, 241, 0.7);
+  
   filter: blur(6px);
   opacity: 0;
   transition: opacity 0.5s ease;
@@ -76,7 +80,7 @@
   justify-content: center;
   opacity: 0;
   transition: opacity 0.4s ease;
-  border-radius: 12px;
+ 
 }
 
 .card:hover .learn-more-overlay {
@@ -94,4 +98,15 @@
   background: linear-gradient(45deg, #fff, #76aef1);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.card > div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:focus {
+  outline: none;
 }

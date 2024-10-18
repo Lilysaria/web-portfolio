@@ -76,7 +76,7 @@ function CardButton({ onProjectCreated }: CardButtonProps): JSX.Element {
       {isCreating && (
         <Modal isOpen={isCreating} closeModal={() => setIsCreating(false)} title="Create Project">
           <form onSubmit={handleCreate}>
-            <input type="text" name="title" value={newProject.title} onChange={handleInputChange} placeholder="Title" required />
+            <input type="text" name="title" value={newProject.title} onChange={handleInputChange} placeholder="Title" required  />
             <input type="text" name="summary" value={newProject.summary} onChange={handleInputChange} placeholder="Summary" required />
             <input type="text" name="imageUrl" value={newProject.imageUrl} onChange={handleInputChange} placeholder="Image URL" required />
             <textarea
