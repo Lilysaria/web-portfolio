@@ -1,43 +1,56 @@
 .container {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-gap: 10px;
-  justify-content: center;
-  position: absolute;
-  top: 20%;
-  right: 2%;
-  z-index: 1;
+  position: relative;
 }
 
 .hexagon {
-  width: 80px;
-  height: 69px;
-  background-color: rgba(255, 255, 255, 0.2);
-  border: 2px solid rgba(255, 255, 255, 0.8);
-  clip-path: polygon(25% 6%, 75% 6%, 100% 50%, 75% 94%, 25% 94%, 0% 50%);
-  cursor: pointer;
-  position: relative;
+  width: 2rem;
+  height: 2rem;
+  background: url('https://res.cloudinary.com/dgtqptpu1/image/upload/v1729553450/stars-removebg-preview_snn4fd.png') no-repeat center/contain;
+  position: absolute;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  animation: floating 3s ease-in-out infinite;
 }
 
-.hexagon:hover {
-  transform: scale(1.1);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+.hexagon:nth-child(1) {
+  top: calc(20% + 25vh);
+  left: calc(77% + 11vw);
 }
 
-.commit-message {
-  color: #ffffff;
-  font-size: 0.85rem;
-  font-weight: bold;
+.hexagon:nth-child(2) {
+  top: calc(30% + 48vh);
+  left: calc(73% + 10vw);
+}
+
+.hexagon:nth-child(3) {
+  top: calc(10% + 41vh);
+  left: calc(63% + 11vw);
+}
+
+.hexagon:nth-child(4) {
+  top: calc(25% + 22vh);
+  left: calc(69% + 10vw);
+}
+
+.hexagon:nth-child(5) {
+  top: calc(35% + 35vh);
+  left: calc(70% + 12vw);
+}
+
+.commitMessage {
+  font-size: 0.75rem;
+  color: #ede8f1;
+  margin-top: 1.0rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  text-align: center;
 }
 
 .modal {
@@ -55,20 +68,43 @@
   color: #333;
 }
 
-.closeBtn {
-  margin-top: 10px;
-  padding: 5px 10px;
-  color: white;
-  border: none;
-  cursor: pointer;
+@keyframes floating {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
-.commit-details {
-  font-size: 0.75rem;
-  margin-top: 5px;
-  color: #666;
-}
 
-.hexagon:nth-child(odd) {
-  margin-top: 34px;
+@media (max-width: 768px) {
+  .hexagon {
+    width: 3rem;
+    height: 3rem;
+    background-size: contain;
+  }
+
+  .hexagon:nth-child(1) {
+    margin-top: 1.5rem;
+  }
+
+  .hexagon:nth-child(2) {
+    transform: translateX(-10%);
+  }
+
+  .hexagon:nth-child(3) {
+    transform: translateX(10%);
+  }
+
+  .hexagon:nth-child(4) {
+    transform: translateX(-10%);
+  }
+
+  .hexagon:nth-child(5) {
+    transform: translateX(10%);
+  }
 }

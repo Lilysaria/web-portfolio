@@ -114,13 +114,10 @@ const Index: React.FC<Props> = ({ initialProjects }) => {
         isOpen={modalOpen === 'About'}
         closeModal={() => setModalOpen(null)}
         size="small"
-        title="About"
+        title="Hello"
       >
-        <div className="about-container">
-          <div className="hello-header mb-2">
-            <h2 className="hello-text">Hello,</h2>
-          </div>
-          <div className="paragraph-content mt-[-30px]">
+         <div className="about-container">
+          <div className="paragraph-content">
             <p>
               My name is Lily, an aspiring web developer living in Oregon.
               Inspired by other developers and the changing web sphere, I hope

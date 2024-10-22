@@ -11,6 +11,7 @@ interface Commit {
     };
   };
   html_url: string;
+  repoName: string;
 }
 
 function GithubCommits() {
@@ -48,7 +49,7 @@ function GithubCommits() {
           onMouseLeave={handleMouseOut} // close modal when hovering off
         >
           <div className={styles.commitMessage}>
-            {commit.commit.message.slice(0, 20)}...
+            {commit.repoName}
           </div>
         </div>
       ))}
