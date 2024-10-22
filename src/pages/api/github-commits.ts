@@ -6,10 +6,9 @@ export default async function handler(
 ) {
   const githubUsername = 'lilysaria';
   const url = `https://api.github.com/users/${githubUsername}/repos`;
+  const startTime = Date.now(); // Move this line here
 
   try {
-    const startTime = Date.now();
-
     console.time(`Total Fetch ${startTime}`);
 
     const reposResponse = await fetch(url, {
@@ -59,4 +58,3 @@ export default async function handler(
     console.timeEnd(`Total Fetch ${startTime}`);
   }
 }
-
